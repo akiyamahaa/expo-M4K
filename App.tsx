@@ -1,17 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { Box, NativeBaseProvider } from 'native-base';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { Box, NativeBaseProvider } from "native-base";
+import { StyleSheet, Text, View } from "react-native";
+import Home from "./src/screens/Home";
+import { Provider } from "react-redux";
+import Root from "./src/navigations/Root";
+import * as SplashScreen from "expo-splash-screen";
+import store from "./src/store";
+import { useEffect } from "react";
+import {
+  useFonts,
+  Quicksand_300Light,
+  Quicksand_400Regular,
+  Quicksand_500Medium,
+  Quicksand_600SemiBold,
+  Quicksand_700Bold,
+} from '@expo-google-fonts/quicksand';
+import appTheme from "./src/theme";
 
+SplashScreen.preventAutoHideAsync();
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Quicksand_300Light,
+    Quicksand_400Regular,
+    Quicksand_500Medium,
+    Quicksand_600SemiBold,
+    Quicksand_700Bold,
+  });
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
-    <NativeBaseProvider>
-      <Box flex={1} bg="#fff" alignItems="center" justifyContent="center">
-        <Text>Open up App.js to start working on your app!</Text>
-      </Box>
+    <NativeBaseProvider theme={appTheme}>
+      <Provider store={store}>
+        <Root />
+      </Provider>
     </NativeBaseProvider>
   );
 }
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});

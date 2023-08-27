@@ -34,29 +34,28 @@ export const newColorTheme = {
 const appTheme = extendTheme({
   colors: newColorTheme,
   fontConfig: {
-    WixMadeForText: {
+    Quicksand: {
+      300: {
+        normal: "Quicksand_300Light",
+      },
+      400: {
+        normal: "Quicksand_400Regular",
+      },
       500: {
-        normal: "WixMadeforText-Regular",
-        italic: "WixMadeforText-Italic",
+        normal: "Quicksand_400Regular",
       },
       600: {
-        normal: "WixMadeforText-SemiBold",
-        italic: "WixMadeforText-SemiBoldItalic",
+        normal: "Quicksand_600SemiBold",
       },
       700: {
-        normal: "WixMadeforText-Bold",
-        italic: "WixMadeforText-BoldItalic",
-      },
-      800: {
-        normal: "WixMadeforText-ExtraBold",
-        italic: "WixMadeforText-ExtraBoldItalic",
+        normal: "Quicksand_700Bold",
       },
     },
-    fonts: {
-      heading: "WixMadeForText",
-      body: "WixMadeForText",
-      mono: "WixMadeForText",
-    },
+  },
+  fonts: {
+    heading: "Quicksand",
+    body: "Quicksand",
+    mono: "Quicksand",
   },
 });
 
