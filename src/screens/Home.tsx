@@ -1,10 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { Box, Center, HStack, VStack, useTheme } from "native-base";
 import BackgroundLayout from "../components/BackgroundLayout";
 import CustomBtn from "../components/CustomBtn";
-import PopupRightAnswer from "../components/PopupRightAnswer";
-import CloseBtn from "../components/CloseBtn";
 import PopupParent from "../components/PopupParent";
 type Props = {};
 
@@ -12,7 +10,7 @@ const Home = (props: Props) => {
   const { colors } = useTheme();
   const [showModal, setShowModal] = useState(false);
   return (
-    <BackgroundLayout imageSource={require("../../assets/images/bg-1.png")}>
+    <BackgroundLayout imageSource={require("../../assets/images/bg-1.jpg")}>
       {/* Popup */}
       <PopupParent showModal={showModal} setShowModal={setShowModal} />
       <Box flex={1} justifyContent={"center"}>

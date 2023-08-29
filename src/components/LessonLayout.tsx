@@ -1,0 +1,43 @@
+import { StyleSheet, Text } from "react-native";
+import React, { ReactNode } from "react";
+import BackgroundLayout from "./BackgroundLayout";
+import { Box, HStack } from "native-base";
+import CloseBtn from "./CloseBtn";
+import { useNavigation } from "@react-navigation/native";
+
+type Props = {
+  iconSource: string;
+  children: ReactNode;
+};
+
+const LessonLayout = (props: Props) => {
+  const navigation = useNavigation();
+  return (
+    <BackgroundLayout
+      imageSource={props.iconSource || require("../../assets/images/bg-2.png")}
+    >
+      <Box flex={1} py={8}>
+        <HStack flex={1} justifyContent={"flex-end"}>
+          <Box height="100%" width="50%">
+            <BackgroundLayout
+              imageSource={require("../../assets/images/table.png")}
+            >
+              {props.children}
+            </BackgroundLayout>
+          </Box>
+          <Box mx={6} mt={"-2"}>
+            <CloseBtn handleBtn={() => navigation.goBack()} />
+          </Box>
+        </HStack>
+      </Box>
+    </BackgroundLayout>
+  );
+};
+
+export default LessonLayout;
+
+const styles = StyleSheet.create({
+  image: {
+    height: 250,
+  },
+});

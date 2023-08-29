@@ -14,6 +14,7 @@ import {
   Quicksand_700Bold,
 } from "@expo-google-fonts/quicksand";
 import appTheme from "./src/theme";
+import LessonLayout from "./src/components/LessonLayout";
 
 SplashScreen.preventAutoHideAsync();
 export default function App() {

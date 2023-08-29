@@ -8,6 +8,8 @@ import { removeLoading, setLoading } from "../store/loading.reducer";
 import LoadingOverlay from "../components/LoadingOverlay";
 import { RootStackParams } from "./config";
 import Home from "../screens/Home";
+import Lessons from "../screens/Lessons";
+import Examination from "../screens/Examination";
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
@@ -22,7 +24,10 @@ const Root = () => {
             headerShown: false,
           }}
         >
+          <Stack.Screen name="Lessons" component={Lessons} />
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Examination" component={Examination} />
+
         </Stack.Navigator>
       </NavigationContainer>
     </>
