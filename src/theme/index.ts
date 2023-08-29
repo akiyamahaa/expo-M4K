@@ -6,28 +6,34 @@ import { extendTheme } from "native-base";
 
 export const newColorTheme = {
   primary: {
-    Darker: "#311902",
-    Dark: "#984D07",
-    Main: "#F58216",
-    Lighter: "#FDE5CE",
+    blue: "#3987B9",
   },
-  secondary: {
-    Darker: "#311902",
-    Dark: "#984D07",
-    Main: "#F58216",
-    Lighter: "#FDE5CE",
+  gradient: {
+    secondary: {
+      green: {
+        color1: "#BFC021",
+        color2: "#7A7D00",
+      },
+      red: {
+        color1: "#FF8579",
+        color2: "#FF3F54",
+      },
+      orange: {
+        color1: "#FFD21C",
+        color2: "#FF9F1F",
+      },
+    },
+    primary: {
+      color1: "#45DEFF",
+      color2: "#2671E1",
+    },
   },
-  grey: {
-    50: "#F2F2F2",
-    100: "#E6E6E6",
-    200: "#CCCCCC",
-    300: "#B3B3B3",
-    400: "#999999",
-    500: "#808080",
-    600: "#666666",
-    700: "#4D4D4D",
-    800: "#333333",
-    900: "#1A1A1A",
+  text: {
+    50: "#FAFAFA",
+    0: "#FFF",
+    coolGray: "#1F2937",
+    primary: "#4CACE9",
+    black: "#000",
   },
 };
 

@@ -1,7 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import { Box, NativeBaseProvider } from "native-base";
-import { StyleSheet, Text, View } from "react-native";
-import Home from "./src/screens/Home";
+import { NativeBaseProvider } from "native-base";
+import { StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import Root from "./src/navigations/Root";
 import * as SplashScreen from "expo-splash-screen";
@@ -14,7 +12,7 @@ import {
   Quicksand_500Medium,
   Quicksand_600SemiBold,
   Quicksand_700Bold,
-} from '@expo-google-fonts/quicksand';
+} from "@expo-google-fonts/quicksand";
 import appTheme from "./src/theme";
 
 SplashScreen.preventAutoHideAsync();
