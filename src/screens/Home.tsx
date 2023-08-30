@@ -4,11 +4,28 @@ import { Box, Center, HStack, VStack, useTheme } from "native-base";
 import BackgroundLayout from "../components/BackgroundLayout";
 import CustomBtn from "../components/CustomBtn";
 import PopupParent from "../components/PopupParent";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNavigationProps } from "../navigations/config";
 type Props = {};
 
 const Home = (props: Props) => {
   const { colors } = useTheme();
+  const navigation = useNavigation<ScreenNavigationProps>();
   const [showModal, setShowModal] = useState(false);
+
+  const navigateLessonsScreen = () => {
+    navigation.navigate("Lessons");
+  };
+  const navigateCountScreen = () => {
+    navigation.navigate("CountNumber");
+  };
+  const navigateAddScreen = () => {
+    navigation.navigate("Quiz");
+  };
+  const navigateSubtractScreen = () => {
+    navigation.navigate("Quiz");
+  };
+
   return (
     <BackgroundLayout imageSource={require("../../assets/images/bg-1.jpg")}>
       {/* Popup */}
@@ -21,11 +38,13 @@ const Home = (props: Props) => {
                 btnColor={colors.gradient.primary}
                 text="Bài giảng"
                 size="MD"
+                handleBtn={navigateLessonsScreen}
               />
               <CustomBtn
                 btnColor={colors.gradient.primary}
                 text="Đếm số"
                 size="MD"
+                handleBtn={navigateCountScreen}
               />
             </HStack>
             <HStack justifyContent={"space-between"}>
@@ -33,11 +52,13 @@ const Home = (props: Props) => {
                 btnColor={colors.gradient.primary}
                 text="Trắc nghiệm phép cộng"
                 size="MD"
+                handleBtn={navigateAddScreen}
               />
               <CustomBtn
                 btnColor={colors.gradient.primary}
                 text="Trắc nghiệm phép trừ"
                 size="MD"
+                handleBtn={navigateSubtractScreen}
               />
             </HStack>
           </VStack>

@@ -7,6 +7,8 @@ import { ResizeMode, Video } from "expo-av";
 import { LinearGradient } from "expo-linear-gradient";
 import { EFont } from "../types/utils";
 import CustomBtn from "../components/CustomBtn";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNavigationProps } from "../navigations/config";
 
 type Props = {};
 
@@ -35,9 +37,14 @@ const Tick = () => {
 };
 
 const Lessons = (props: Props) => {
+  const navigation = useNavigation<ScreenNavigationProps>();
   const { colors } = useTheme();
   const video = useRef(null);
   const [status, setStatus] = useState({});
+
+  const navigateSubtractScreen = () => {
+    navigation.navigate("Examination");
+  };
   return (
     <LessonLayout iconSource={require("../../assets/images/bg-3.jpg")}>
       <Box flex={1}>
@@ -92,7 +99,7 @@ const Lessons = (props: Props) => {
               btnColor={colors.gradient.secondary.orange}
               size="SM"
               text="Bài kiểm tra"
-              handleBtn={() => {}}
+              handleBtn={navigateSubtractScreen}
             />
           </HStack>
         </VStack>

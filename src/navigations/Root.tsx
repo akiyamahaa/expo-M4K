@@ -25,13 +25,12 @@ const Root = () => {
             headerShown: false,
           }}
         >
+          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="CountNumber" component={CountNumber} />
           <Stack.Screen name="Collection" component={Collection} />
-          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Lessons" component={Lessons} />
           <Stack.Screen name="Quiz" component={Quiz} />
           <Stack.Screen name="Examination" component={Examination} />
-
         </Stack.Navigator>
       </NavigationContainer>
     </>

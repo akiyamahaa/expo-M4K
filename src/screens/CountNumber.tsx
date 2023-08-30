@@ -1,11 +1,7 @@
 import { StyleSheet } from "react-native";
 import React from "react";
 import LessonLayout from "../components/LessonLayout";
-import { Center, Text, HStack, VStack, useTheme } from "native-base";
-import { EFont } from "../types/utils";
-import BoxQuestion from "../components/BoxQuestion";
-import BoxAnswer from "../components/BoxAnswer";
-import Formula from "../components/Formula";
+import { Center, VStack, useTheme } from "native-base";
 import GroupAnswer from "../components/GroupAnswer";
 import FormulaImage from "../components/FormulaImage";
 

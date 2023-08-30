@@ -1,4 +1,5 @@
 import { NavigatorScreenParams } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type RootStackParams = {
   Home: undefined;
@@ -8,3 +9,5 @@ export type RootStackParams = {
   Collection: undefined;
   CountNumber: undefined;
 };
+
+export type ScreenNavigationProps = NativeStackNavigationProp<RootStackParams>;
