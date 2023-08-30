@@ -5,10 +5,11 @@ import { EFont } from "../types/utils";
 
 type Props = {
   size: "M" | "S";
+  answered?: boolean;
 };
 
 const BoxQuestion = (props: Props) => {
-  const { size } = props;
+  const { size, answered = true } = props;
   let width, height, fontSize;
   if (size == "M") {
     width = 60;
@@ -30,7 +31,7 @@ const BoxQuestion = (props: Props) => {
       <Text
         fontFamily={EFont.Quicksand_700Bold}
         fontSize={fontSize}
-        color={"white"}
+        color={answered ? "white" : "#76c0f5"}
       >
         ?
       </Text>

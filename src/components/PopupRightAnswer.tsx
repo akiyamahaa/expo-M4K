@@ -50,6 +50,8 @@ const PopupRightAnswer = (props: Props) => {
                   btnColor={colors.gradient.primary}
                   size="SM"
                   text="Tiếp tục →"
+                  // TODO: Add Function here
+                  handleBtn={() => {}}
                 />
               </VStack>
             </BackgroundLayout>

@@ -18,7 +18,7 @@ const LessonLayout = (props: Props) => {
     >
       <Box flex={1} py={8}>
         <HStack flex={1} justifyContent={"flex-end"}>
-          <Box height="100%" width="50%">
+          <Box height="100%" width="55%">
             <BackgroundLayout
               imageSource={require("../../assets/images/table.png")}
             >

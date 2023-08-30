@@ -20,7 +20,7 @@ const BoxAnswer = (props: Props) => {
   } else if (size == "S") {
     width = 40;
     height = 40;
-    fontSize = 28;
+    fontSize = 24;
   }
   return (
     <TouchableOpacity>
