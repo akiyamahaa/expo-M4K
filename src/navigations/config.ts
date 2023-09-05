@@ -4,7 +4,9 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 export type RootStackParams = {
   Home: undefined;
   Lessons: undefined;
-  Examination: undefined;
+  Examination: {
+    idx: number;
+  };
   Quiz: undefined;
   Collection: undefined;
   QuizImage: undefined;

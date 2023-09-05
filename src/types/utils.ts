@@ -40,3 +40,11 @@ export enum EQuizStatus {
 }
 
 export type IAnserTag = ChildNode | null;
+
+export interface ILessons {
+  [key: number]: {
+    title: string;
+    video: string;
+    exams: IQuiz[];
+  };
+}

@@ -17,11 +17,7 @@ const handleRenderImageQuiz = (imageSlot: number, imageSource?: string) => {
       {arrImage.map((value, idx) => (
         <Box
           key={idx}
-          style={
-            idx % 2 == 0
-              ? { alignSelf: "flex-start" }
-              : { alignSelf: "flex-end" }
-          }
+          style={{ alignSelf: idx % 2 == 0 ? "flex-start" : "flex-end" }}
         >
           <Image
             style={{ height: 80, width: 75 }}

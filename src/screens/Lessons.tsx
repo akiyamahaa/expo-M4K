@@ -7,8 +7,9 @@ import { ResizeMode, Video } from "expo-av";
 import { LinearGradient } from "expo-linear-gradient";
 import { EFont } from "../types/utils";
 import CustomBtn from "../components/CustomBtn";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { ScreenNavigationProps } from "../navigations/config";
+import { lessons } from "../data/mockup";
 
 type Props = {};
 
@@ -38,12 +39,16 @@ const Tick = () => {
 
 const Lessons = (props: Props) => {
   const navigation = useNavigation<ScreenNavigationProps>();
+  // const route = useRoute();
   const { colors } = useTheme();
   const video = useRef(null);
   const [status, setStatus] = useState({});
+  const [lessonIdx, setLessonIdx] = useState(1);
 
-  const navigateSubtractScreen = () => {
-    navigation.navigate("Examination");
+  const navigateExamScreen = () => {
+    navigation.navigate("Examination", {
+      idx: lessonIdx,
+    });
   };
   return (
     <LessonLayout iconSource={require("../../assets/images/bg-3.jpg")}>
@@ -51,7 +56,13 @@ const Lessons = (props: Props) => {
         <VStack flex={1} justifyContent={"center"} alignItems={"center"}>
           <HStack alignItems={"center"} justifyContent={"space-between"} px={5}>
             <TouchableOpacity>
-              <ArrowLeft3 size="36" color="#FFFFFF" variant="Bold" />
+              <ArrowLeft3
+                size="36"
+                color="#FFFFFF"
+                variant="Bold"
+                onPress={() => setLessonIdx(lessonIdx - 1)}
+                disabled={lessonIdx == 1}
+              />
             </TouchableOpacity>
             <Box flex={1} borderRadius={16} alignItems={"center"} px={2}>
               <Video
@@ -67,7 +78,13 @@ const Lessons = (props: Props) => {
               />
             </Box>
             <TouchableOpacity>
-              <ArrowRight3 size="36" color="#FFFFFF" variant="Bold" />
+              <ArrowRight3
+                size="36"
+                color="#FFFFFF"
+                variant="Bold"
+                onPress={() => setLessonIdx(lessonIdx + 1)}
+                disabled={lessonIdx == Object.keys(lessons).length}
+              />
             </TouchableOpacity>
           </HStack>
           <HStack
@@ -82,7 +99,7 @@ const Lessons = (props: Props) => {
                 color="white"
                 fontSize={24}
               >
-                Bài 1:
+                Bài {lessonIdx}:
               </Text>
               <HStack alignItems={"center"} space={1}>
                 <Text
@@ -90,7 +107,7 @@ const Lessons = (props: Props) => {
                   color="white"
                   fontSize={18}
                 >
-                  Phép cộng
+                  {lessons[lessonIdx].title}
                 </Text>
                 <Tick />
               </HStack>
@@ -99,7 +116,7 @@ const Lessons = (props: Props) => {
               btnColor={colors.gradient.secondary.orange}
               size="SM"
               text="Bài kiểm tra"
-              handleBtn={navigateSubtractScreen}
+              handleBtn={navigateExamScreen}
             />
           </HStack>
         </VStack>

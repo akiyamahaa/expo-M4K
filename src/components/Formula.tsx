@@ -19,7 +19,6 @@ const Formula = (props: Props) => {
     spacing = 8;
   } else if (size == "S") {
     fontSize = 30;
-    spacing = 1;
   }
 
   const formula: { [key: string]: number | string } = {
@@ -43,9 +42,12 @@ const Formula = (props: Props) => {
           </Text>
         </Box>
       ))}
-      {/* Box Ques */}
-      {props.answerTag ? props.answerTag : <BoxQuestion size={size} status={status} />}
-      {/* Box Ans */}
+      {/* Box Ques  & Box Answer */}
+      {props.answerTag ? (
+        props.answerTag
+      ) : (
+        <BoxQuestion size={size} status={status} />
+      )}
     </HStack>
   );
 };

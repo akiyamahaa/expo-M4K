@@ -7,59 +7,19 @@ import GroupAnswer from "../components/GroupAnswer";
 import { EOperation, EQuizStatus, IAnserTag, IQuiz } from "../types/utils";
 import PopupRightAnswer from "../components/PopupRightAnswer";
 import CustomBtn from "../components/CustomBtn";
-import { useNavigation } from "@react-navigation/native";
-import { ScreenNavigationProps } from "../navigations/config";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { RootStackParams, ScreenNavigationProps } from "../navigations/config";
+import { lessons } from "../data/mockup";
 
 type Props = {};
 
 type IAnserTagList = { [key: number]: IAnserTag };
-const listTest: IQuiz[] = [
-  {
-    firstNum: 4,
-    secondNum: 5,
-    operation: EOperation.AddOperation,
-    choices: [2, 3, 9],
-    answer: 9,
-  },
-  {
-    firstNum: 4,
-    secondNum: 2,
-    operation: EOperation.SubtractOperation,
-    choices: [2, 4, 9],
-    answer: 2,
-  },
-  {
-    firstNum: 3,
-    secondNum: 2,
-    operation: EOperation.SubtractOperation,
-    choices: [1, 3, 9],
-    answer: 1,
-  },
-  {
-    firstNum: 4,
-    secondNum: 2,
-    operation: EOperation.AddOperation,
-    choices: [2, 6, 9],
-    answer: 6,
-  },
-  {
-    firstNum: 5,
-    secondNum: 2,
-    operation: EOperation.SubtractOperation,
-    choices: [3, 2, 9],
-    answer: 3,
-  },
-  {
-    firstNum: 3,
-    secondNum: 2,
-    operation: EOperation.SubtractOperation,
-    choices: [1, 3, 9],
-    answer: 1,
-  },
-];
 
 const Examination = (props: Props) => {
   const { colors } = useTheme();
+  const route = useRoute<any>();
+  const { idx } = route.params;
+  const exams = lessons[idx].exams;
   const navigation = useNavigation<ScreenNavigationProps>();
   const [quizIndex, setQuizIndex] = useState(0);
   const [finishQuiz, setFinishQuiz] = useState(false);
@@ -72,10 +32,9 @@ const Examination = (props: Props) => {
     5: null,
   });
   const [showModal, setShowModal] = useState(false);
-
   const handleChoice = (childNode: ChildNode) => {
-    // Set limit when get last question
     setAnswerTagList({ ...answerTagList, [quizIndex]: childNode });
+    // Set limit when get last question
     if (quizIndex < 5) {
       setQuizIndex(quizIndex + 1);
     } else {
@@ -103,7 +62,7 @@ const Examination = (props: Props) => {
       <Center flex={1} padding={4}>
         <VStack>
           <VStack flex={7} flexWrap={"wrap"} justifyContent={"center"}>
-            {listTest.map((elm, idx) => (
+            {exams.map((elm, idx) => (
               <HStack key={`${elm}-${idx}`} flexBasis={`26%`}>
                 <Formula
                   size="S"
@@ -113,7 +72,7 @@ const Examination = (props: Props) => {
                   answerTag={answerTagList[idx]}
                   data={elm}
                 />
-                {idx < 3 && <Box mx={4} width={0.5} bgColor={"#fff"}></Box>}
+                {idx < 3 && <Box mx={2} width={0.4} bgColor={"#fff"}></Box>}
               </HStack>
             ))}
           </VStack>
@@ -129,8 +88,8 @@ const Examination = (props: Props) => {
               <GroupAnswer
                 size="S"
                 dataAnswer={{
-                  choices: listTest[quizIndex].choices,
-                  answer: listTest[quizIndex].answer,
+                  choices: exams[quizIndex].choices,
+                  answer: exams[quizIndex].answer,
                 }}
                 answerTag={answerTagList[quizIndex]}
                 setAnswerTag={handleChoice}
