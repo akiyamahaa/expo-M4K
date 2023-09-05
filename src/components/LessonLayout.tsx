@@ -8,10 +8,12 @@ import { useNavigation } from "@react-navigation/native";
 type Props = {
   iconSource: string;
   children: ReactNode;
+  handleBack?: () => void;
 };
 
 const LessonLayout = (props: Props) => {
   const navigation = useNavigation();
+  const { handleBack = () => navigation.goBack() } = props;
   return (
     <BackgroundLayout
       imageSource={props.iconSource || require("../../assets/images/bg-2.png")}
@@ -26,7 +28,7 @@ const LessonLayout = (props: Props) => {
             </BackgroundLayout>
           </Box>
           <Box mx={6} mt={"-2"}>
-            <CloseBtn handleBtn={() => navigation.goBack()} />
+            <CloseBtn handleBtn={handleBack} />
           </Box>
         </HStack>
       </Box>

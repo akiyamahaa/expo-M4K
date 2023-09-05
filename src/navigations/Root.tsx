@@ -10,7 +10,7 @@ import Lessons from "../screens/Lessons";
 import Examination from "../screens/Examination";
 import Quiz from "../screens/Quiz";
 import Collection from "../screens/Collection";
-import CountNumber from "../screens/CountNumber";
+import QuizImage from "../screens/QuizImage";
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
@@ -26,7 +26,7 @@ const Root = () => {
           }}
         >
           <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="CountNumber" component={CountNumber} />
+          <Stack.Screen name="QuizImage" component={QuizImage} />
           <Stack.Screen name="Collection" component={Collection} />
           <Stack.Screen name="Lessons" component={Lessons} />
           <Stack.Screen name="Quiz" component={Quiz} />

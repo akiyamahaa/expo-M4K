@@ -2,55 +2,32 @@ import { StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import LessonLayout from "../components/LessonLayout";
 import { Center, VStack, useTheme } from "native-base";
-import { EOperation, EQuizStatus, IAnserTag, IQuiz } from "../types/utils";
-import Formula from "../components/Formula";
 import GroupAnswer from "../components/GroupAnswer";
-import PopupRightAnswer from "../components/PopupRightAnswer";
+import FormulaImage from "../components/FormulaImage";
+import { IQuizImage } from "../types/utils";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProps } from "../navigations/config";
+import PopupRightAnswer from "../components/PopupRightAnswer";
 
 type Props = {};
 
-const listTest: IQuiz[] = [
+const listTestImage: IQuizImage[] = [
   {
-    firstNum: 4,
-    secondNum: 5,
-    operation: EOperation.AddOperation,
-    choices: [2, 3, 9],
-    answer: 9,
-  },
-  {
-    firstNum: 4,
-    secondNum: 2,
-    operation: EOperation.SubtractOperation,
+    imageSlot: 2,
     choices: [2, 3, 9],
     answer: 2,
   },
-  {
-    firstNum: 3,
-    secondNum: 2,
-    operation: EOperation.SubtractOperation,
-    choices: [1, 3, 9],
-    answer: 1,
-  },
-  {
-    firstNum: 4,
-    secondNum: 2,
-    operation: EOperation.AddOperation,
-    choices: [2, 6, 9],
-    answer: 6,
-  },
 ];
 
-const Quiz = (props: Props) => {
+const QuizImage = (props: Props) => {
+  const { colors } = useTheme();
   const navigation = useNavigation<ScreenNavigationProps>();
-  const [answerTag, setAnswerTag] = useState<IAnserTag>(null);
+  const [answerTag, setAnswerTag] = useState<ChildNode | null>(null);
   const [quesIndex, setQuesIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
   const handleNextQues = () => {
-    console.log(quesIndex, listTest.length);
-    if (quesIndex < listTest.length - 1) {
+    if (quesIndex < listTestImage.length - 1) {
       setQuesIndex(quesIndex + 1);
       setAnswerTag(null);
       setShowModal(false);
@@ -76,17 +53,15 @@ const Quiz = (props: Props) => {
       />
       <Center flex={1}>
         <VStack space={10}>
-          <Formula
-            size="M"
-            data={listTest[quesIndex]}
-            status={EQuizStatus.ANSWER}
+          <FormulaImage
+            imageSlot={listTestImage[quesIndex].imageSlot}
             answerTag={answerTag}
           />
           <GroupAnswer
             size="M"
             dataAnswer={{
-              choices: listTest[quesIndex].choices,
-              answer: listTest[quesIndex].answer,
+              choices: listTestImage[quesIndex].choices,
+              answer: listTestImage[quesIndex].answer,
             }}
             answerTag={answerTag}
             setAnswerTag={setAnswerTag}
@@ -97,6 +72,6 @@ const Quiz = (props: Props) => {
   );
 };
 
-export default Quiz;
+export default QuizImage;
 
 const styles = StyleSheet.create({});

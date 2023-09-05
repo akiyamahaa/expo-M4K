@@ -17,7 +17,7 @@ const Home = (props: Props) => {
     navigation.navigate("Lessons");
   };
   const navigateCountScreen = () => {
-    navigation.navigate("CountNumber");
+    navigation.navigate("QuizImage");
   };
   const navigateAddScreen = () => {
     navigation.navigate("Quiz");

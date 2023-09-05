@@ -1,15 +1,15 @@
 import { StyleSheet } from "react-native";
 import React from "react";
 import { Box, Text } from "native-base";
-import { EFont } from "../types/utils";
+import { EFont, EQuizStatus } from "../types/utils";
 
 type Props = {
   size: "M" | "S";
-  answered?: boolean;
+  status?: string;
 };
 
 const BoxQuestion = (props: Props) => {
-  const { size, answered = true } = props;
+  const { size, status = EQuizStatus.ANSWER } = props;
   let width, height, fontSize;
   if (size == "M") {
     width = 60;
@@ -31,7 +31,7 @@ const BoxQuestion = (props: Props) => {
       <Text
         fontFamily={EFont.Quicksand_700Bold}
         fontSize={fontSize}
-        color={answered ? "white" : "#76c0f5"}
+        color={status == EQuizStatus.HIDDEN ? "#76c0f5" : "#fff"}
       >
         ?
       </Text>

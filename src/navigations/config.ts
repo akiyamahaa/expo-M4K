@@ -7,7 +7,7 @@ export type RootStackParams = {
   Examination: undefined;
   Quiz: undefined;
   Collection: undefined;
-  CountNumber: undefined;
+  QuizImage: undefined;
 };
 
 export type ScreenNavigationProps = NativeStackNavigationProp<RootStackParams>;

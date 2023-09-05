@@ -9,14 +9,19 @@ import { EFont } from "../types/utils";
 import CustomBtn from "../components/CustomBtn";
 import BackgroundLayout from "../components/BackgroundLayout";
 import { Image } from "expo-image";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNavigationProps } from "../navigations/config";
 
 type Props = {};
 
 const Collection = (props: Props) => {
   const { colors } = useTheme();
-
+  const navigation = useNavigation<ScreenNavigationProps>();
   return (
-    <LessonLayout iconSource={require("../../assets/images/bg-3.jpg")}>
+    <LessonLayout
+      iconSource={require("../../assets/images/bg-3.jpg")}
+      handleBack={() => navigation.navigate("Home")}
+    >
       <Box flex={1}>
         <Box height={20} mt={"-4"}>
           <BackgroundLayout

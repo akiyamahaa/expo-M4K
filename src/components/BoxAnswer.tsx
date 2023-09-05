@@ -5,13 +5,14 @@ import { Box, Text } from "native-base";
 import { EFont, IGradientColor } from "../types/utils";
 
 type Props = {
-  answer?: number;
+  boxText: number;
   size: "M" | "S";
   btnColor: IGradientColor;
+  handleBtn: () => void;
 };
 
 const BoxAnswer = (props: Props) => {
-  const { answer = 9, size, btnColor } = props;
+  const { boxText, size, btnColor, handleBtn } = props;
   let width, height, fontSize;
   if (size == "M") {
     width = 60;
@@ -23,7 +24,7 @@ const BoxAnswer = (props: Props) => {
     fontSize = 24;
   }
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={handleBtn}>
       <Box style={[styles.button, { width, height }]} shadow={2}>
         <LinearGradient
           // Button Linear Gradient
@@ -35,7 +36,7 @@ const BoxAnswer = (props: Props) => {
             color="white"
             fontFamily={EFont.Quicksand_700Bold}
           >
-            {answer}
+            {boxText}
           </Text>
         </LinearGradient>
       </Box>

@@ -14,17 +14,17 @@ import CustomBtn from "./CustomBtn";
 import BackgroundLayout from "./BackgroundLayout";
 
 type Props = {
-  showModal?: boolean;
-  setShowModal?: any;
-  handleBtn?: () => {};
+  showModal: boolean;
+  setShowModal: any;
+  handleBtn: () => void;
 };
 
 const PopupRightAnswer = (props: Props) => {
   const { colors } = useTheme();
-  const { showModal, setShowModal, handleBtn } = props;
+  const { showModal, handleBtn } = props;
   return (
     <Center>
-      <Modal isOpen={true} onClose={() => {}}>
+      <Modal isOpen={showModal} onClose={() => {}}>
         <Modal.Content>
           <Modal.Body height={200}>
             <BackgroundLayout
@@ -51,7 +51,7 @@ const PopupRightAnswer = (props: Props) => {
                   size="SM"
                   text="Tiếp tục →"
                   // TODO: Add Function here
-                  handleBtn={() => {}}
+                  handleBtn={handleBtn}
                 />
               </VStack>
             </BackgroundLayout>
