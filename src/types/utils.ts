@@ -48,3 +48,9 @@ export interface ILessons {
     exams: IQuiz[];
   };
 }
+
+export interface IListBadges {
+  [key: number]: {
+    image: string;
+  };
+}

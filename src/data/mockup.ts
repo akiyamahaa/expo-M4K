@@ -1,4 +1,4 @@
-import { EOperation, ILessons } from "../types/utils";
+import { EOperation, ILessons, IListBadges } from "../types/utils";
 
 export const lessons: ILessons = {
   1: {
@@ -96,5 +96,32 @@ export const lessons: ILessons = {
         answer: 1,
       },
     ],
+  },
+};
+
+export const allBadges: IListBadges = {
+  1: {
+    image: require("../../assets/badges/badge-1.png"),
+  },
+  2: {
+    image: require("../../assets/badges/badge-2.png"),
+  },
+  3: {
+    image: require("../../assets/badges/badge-3.png"),
+  },
+  4: {
+    image: require("../../assets/badges/badge-4.png"),
+  },
+  5: {
+    image: require("../../assets/badges/badge-5.png"),
+  },
+  6: {
+    image: require("../../assets/badges/badge-6.png"),
+  },
+  7: {
+    image: require("../../assets/badges/badge-7.png"),
+  },
+  8: {
+    image: require("../../assets/badges/badge-8.png"),
   },
 };

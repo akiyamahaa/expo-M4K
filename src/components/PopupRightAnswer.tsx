@@ -17,11 +17,12 @@ type Props = {
   showModal: boolean;
   setShowModal: any;
   handleBtn: () => void;
+  text?: string;
 };
 
 const PopupRightAnswer = (props: Props) => {
   const { colors } = useTheme();
-  const { showModal, handleBtn } = props;
+  const { showModal, text = "Bạn đã trả lời đúng", handleBtn } = props;
   return (
     <Center>
       <Modal isOpen={showModal} onClose={() => {}}>
@@ -44,7 +45,7 @@ const PopupRightAnswer = (props: Props) => {
                   color={"text.coolGray"}
                   mb={4}
                 >
-                  Bạn đã trả lời đúng
+                  {text}
                 </Text>
                 <CustomBtn
                   btnColor={colors.gradient.primary}

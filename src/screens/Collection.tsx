@@ -1,29 +1,70 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import LessonLayout from "../components/LessonLayout";
-import { Box, Text, HStack, VStack, useTheme, Center } from "native-base";
-import { ArrowLeft3, ArrowRight3, TickCircle } from "iconsax-react-native";
-import { ResizeMode, Video } from "expo-av";
-import { LinearGradient } from "expo-linear-gradient";
-import { EFont } from "../types/utils";
-import CustomBtn from "../components/CustomBtn";
+import { Box, Text, HStack, VStack, ScrollView } from "native-base";
+import { EFont, IListBadges } from "../types/utils";
 import BackgroundLayout from "../components/BackgroundLayout";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProps } from "../navigations/config";
+import { createBadges, getBadges, getDBConnection } from "../db/db-service";
+import { allBadges } from "../data/mockup";
+import PopupRightAnswer from "../components/PopupRightAnswer";
 
 type Props = {};
 
+interface IBadges {
+  id: number;
+  badgeId: number;
+  name: string;
+}
+
 const Collection = (props: Props) => {
-  const { colors } = useTheme();
+  const db = getDBConnection();
   const navigation = useNavigation<ScreenNavigationProps>();
+
+  const [myBadges, setMyBadges] = useState<IBadges[]>([]);
+  const [badges, setBadges] = useState<IListBadges>([]);
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const loadBadges = async () => {
+      const list: IBadges[] = (await getBadges(db)) as IBadges[];
+      let newListBadges = { ...allBadges };
+      // remove collected badges
+      list.forEach((badge) => {
+        if (allBadges[badge.badgeId]) {
+          delete newListBadges[badge.badgeId];
+        }
+      });
+      setMyBadges(list);
+      setBadges(newListBadges);
+    };
+    loadBadges();
+  }, [showModal]);
+
+  const handlePickBadge = (badgeId: number) => {
+    createBadges(db, badgeId);
+    setShowModal(true);
+  };
+
+  const handleNextQues = () => {
+    navigation.navigate("Home");
+  };
+
   return (
     <LessonLayout
       iconSource={require("../../assets/images/bg-3.jpg")}
       handleBack={() => navigation.navigate("Home")}
     >
+      <PopupRightAnswer
+        showModal={showModal}
+        setShowModal={setShowModal}
+        handleBtn={handleNextQues}
+        text={"Bạn đã nhận được huy hiệu"}
+      />
       <Box flex={1}>
-        <Box height={20} mt={"-4"}>
+        <Box height={20} width={"60%"} mt={"-6"} alignSelf={"center"}>
           <BackgroundLayout
             imageSource={require("../../assets/images/label.png")}
           >
@@ -41,13 +82,17 @@ const Collection = (props: Props) => {
         </Box>
         <VStack height={"70%"}>
           {/* Box Badges */}
-          <Box flex={1} px={12}>
-            <Image
-              style={{ width: 32, height: 32 }}
-              source={require("../../assets/badges/badge-1.png")}
-            />
-          </Box>
-          {/* List Badges */}
+          <HStack flex={1} px={12} space={4}>
+            {myBadges.map((badge) => (
+              <Box key={badge.badgeId}>
+                <Image
+                  style={{ width: 32, height: 32 }}
+                  source={allBadges[badge.badgeId].image}
+                />
+              </Box>
+            ))}
+          </HStack>
+          {/* List Available Badges */}
           <Box px={12}>
             <Box
               bgColor={"#173D55"}
@@ -55,32 +100,21 @@ const Collection = (props: Props) => {
               justifyContent={"center"}
               py={2}
             >
-              <HStack px={8} alignItems={"center"} space={4}>
-                <TouchableOpacity>
-                  <Image
-                    style={{ width: 32, height: 32 }}
-                    source={require("../../assets/badges/badge-1.png")}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Image
-                    style={{ width: 32, height: 32 }}
-                    source={require("../../assets/badges/badge-2.png")}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Image
-                    style={{ width: 32, height: 32 }}
-                    source={require("../../assets/badges/badge-3.png")}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Image
-                    style={{ width: 32, height: 32 }}
-                    source={require("../../assets/badges/badge-4.png")}
-                  />
-                </TouchableOpacity>
-              </HStack>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <HStack px={8} alignItems={"center"} space={4}>
+                  {Object.keys(badges).map((badgeId: any, idx) => (
+                    <TouchableOpacity
+                      key={`${badgeId}-${idx}`}
+                      onPress={() => handlePickBadge(badgeId)}
+                    >
+                      <Image
+                        style={{ width: 32, height: 32 }}
+                        source={badges[badgeId].image}
+                      />
+                    </TouchableOpacity>
+                  ))}
+                </HStack>
+              </ScrollView>
             </Box>
           </Box>
         </VStack>

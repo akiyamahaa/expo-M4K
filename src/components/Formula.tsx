@@ -12,7 +12,7 @@ type Props = {
 };
 
 const Formula = (props: Props) => {
-  const { size, status = EQuizStatus.ANSWER, data } = props;
+  const { size, status = EQuizStatus.ANSWER, data, answerTag } = props;
   let fontSize: number, spacing;
   if (size == "M") {
     fontSize = 48;
@@ -43,11 +43,7 @@ const Formula = (props: Props) => {
         </Box>
       ))}
       {/* Box Ques  & Box Answer */}
-      {props.answerTag ? (
-        props.answerTag
-      ) : (
-        <BoxQuestion size={size} status={status} />
-      )}
+      {answerTag ? answerTag : <BoxQuestion size={size} status={status} />}
     </HStack>
   );
 };

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ErrorOverlay from "../components/ErrorOverlay";
@@ -11,10 +11,31 @@ import Examination from "../screens/Examination";
 import Quiz from "../screens/Quiz";
 import Collection from "../screens/Collection";
 import QuizImage from "../screens/QuizImage";
+import * as SQLite from "expo-sqlite";
+import { createTables, deleteTable, getDBConnection } from "../db/db-service";
+import { models } from "../db/models";
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
 const Root = () => {
+  const [db, setDb] = useState<SQLite.Database>();
+
+  useEffect(() => {
+    const loadDb = () => {
+      try {
+        const db = getDBConnection();
+        // delete tables
+        deleteTable(db, "badges");
+        // create Tables
+        Object.keys(models).map((tableName) =>
+          createTables(db, tableName, models[tableName])
+        );
+      } catch (error: any) {
+        throw new Error(error);
+      }
+    };
+    loadDb();
+  }, []);
   return (
     <>
       <LoadingOverlay />
