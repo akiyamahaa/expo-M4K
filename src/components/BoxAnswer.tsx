@@ -1,7 +1,7 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { Box, Text } from "native-base";
+import { Box } from "native-base";
 import { EFont, IGradientColor } from "../types/utils";
 
 type Props = {
@@ -32,9 +32,12 @@ const BoxAnswer = (props: Props) => {
           style={styles.gradientColor}
         >
           <Text
-            fontSize={fontSize}
-            color="white"
-            fontFamily={EFont.Quicksand_700Bold}
+            style={{
+              color: "white",
+              fontSize,
+              fontFamily: EFont.Quicksand_700Bold,
+              includeFontPadding: false,
+            }}
           >
             {boxText}
           </Text>
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
   gradientColor: {
     borderRadius: 8,
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
   },
 });

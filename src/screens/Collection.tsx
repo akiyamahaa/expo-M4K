@@ -24,21 +24,25 @@ const Collection = (props: Props) => {
   const navigation = useNavigation<ScreenNavigationProps>();
 
   const [myBadges, setMyBadges] = useState<IBadges[]>([]);
-  const [badges, setBadges] = useState<IListBadges>([]);
+  const [badges, setBadges] = useState<IListBadges>(allBadges);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const loadBadges = async () => {
-      const list: IBadges[] = (await getBadges(db)) as IBadges[];
-      let newListBadges = { ...allBadges };
-      // remove collected badges
-      list.forEach((badge) => {
-        if (allBadges[badge.badgeId]) {
-          delete newListBadges[badge.badgeId];
-        }
-      });
-      setMyBadges(list);
-      setBadges(newListBadges);
+      try {
+        const list: IBadges[] = (await getBadges(db)) as IBadges[];
+        let newListBadges = { ...allBadges };
+        // remove collected badges
+        list.forEach((badge) => {
+          if (allBadges[badge.badgeId]) {
+            delete newListBadges[badge.badgeId];
+          }
+        });
+        setMyBadges(list);
+        setBadges(newListBadges);
+      } catch (err) {
+        console.log(err);
+      }
     };
     loadBadges();
   }, [showModal]);

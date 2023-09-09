@@ -24,8 +24,7 @@ const Root = () => {
     const loadDb = () => {
       try {
         const db = getDBConnection();
-        // delete tables
-        deleteTable(db, "badges");
+        // deleteTable(db, "badges");
         // create Tables
         Object.keys(models).map((tableName) =>
           createTables(db, tableName, models[tableName])
