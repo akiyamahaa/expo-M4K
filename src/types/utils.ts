@@ -54,3 +54,8 @@ export interface IListBadges {
     image: string;
   };
 }
+
+export interface IBadgesStorage {
+  id: number;
+  badgeId: number;
+}

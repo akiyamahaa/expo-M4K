@@ -2,35 +2,30 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import LessonLayout from "../components/LessonLayout";
 import { Box, Text, HStack, VStack, ScrollView } from "native-base";
-import { EFont, IListBadges } from "../types/utils";
+import { EFont, IBadgesStorage, IListBadges } from "../types/utils";
 import BackgroundLayout from "../components/BackgroundLayout";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProps } from "../navigations/config";
-import { createBadges, getBadges, getDBConnection } from "../db/db-service";
 import { allBadges } from "../data/mockup";
 import PopupRightAnswer from "../components/PopupRightAnswer";
+import { createBadges, getBadges, getDBConnection } from "../db/db-rn";
 
 type Props = {};
 
-interface IBadges {
-  id: number;
-  badgeId: number;
-  name: string;
-}
-
 const Collection = (props: Props) => {
-  const db = getDBConnection();
   const navigation = useNavigation<ScreenNavigationProps>();
 
-  const [myBadges, setMyBadges] = useState<IBadges[]>([]);
+  const [myBadges, setMyBadges] = useState<IBadgesStorage[]>([]);
   const [badges, setBadges] = useState<IListBadges>(allBadges);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const loadBadges = async () => {
       try {
-        const list: IBadges[] = (await getBadges(db)) as IBadges[];
+        const db = await getDBConnection();
+        const list = await getBadges(db);
+        await createBadges(db, 100);
         let newListBadges = { ...allBadges };
         // remove collected badges
         list.forEach((badge) => {
@@ -47,9 +42,14 @@ const Collection = (props: Props) => {
     loadBadges();
   }, [showModal]);
 
-  const handlePickBadge = (badgeId: number) => {
-    createBadges(db, badgeId);
-    setShowModal(true);
+  const handlePickBadge = async (badgeId: number) => {
+    try {
+      const db = await getDBConnection();
+      await createBadges(db, badgeId);
+      setShowModal(true);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleNextQues = () => {

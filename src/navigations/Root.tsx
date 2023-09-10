@@ -11,24 +11,23 @@ import Examination from "../screens/Examination";
 import Quiz from "../screens/Quiz";
 import Collection from "../screens/Collection";
 import QuizImage from "../screens/QuizImage";
-import * as SQLite from "expo-sqlite";
-import { createTables, deleteTable, getDBConnection } from "../db/db-service";
 import { models } from "../db/models";
+import { createTable, getDBConnection } from "../db/db-rn";
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
 const Root = () => {
-  const [db, setDb] = useState<SQLite.Database>();
 
   useEffect(() => {
-    const loadDb = () => {
+    const loadDb = async () => {
       try {
-        const db = getDBConnection();
+        const db = await getDBConnection();
         // deleteTable(db, "badges");
         // create Tables
-        Object.keys(models).map((tableName) =>
-          createTables(db, tableName, models[tableName])
+        const createTables = Object.keys(models).map((tableName) =>
+          createTable(db, tableName, models[tableName])
         );
+        await Promise.all(createTables);
       } catch (error: any) {
         throw new Error(error);
       }
