@@ -69,7 +69,7 @@ const Lessons = (props: Props) => {
                 ref={video}
                 style={{ width: "100%", height: 180, borderRadius: 16 }}
                 source={{
-                  uri: "https://firebasestorage.googleapis.com/v0/b/sporty-app-e5be8.appspot.com/o/Left%2C%20Right%2C%20Up%2C%20Down.%20Lesson%209.%20Educational%20video%20for%20children%20(Early%20childhood%20development)..mp4?alt=media&token=f985e47f-ab12-4db5-bda0-5380d5333736",
+                  uri: lessons[lessonIdx + 1].video,
                 }}
                 useNativeControls
                 resizeMode={ResizeMode.CONTAIN}
