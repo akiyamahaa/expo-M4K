@@ -2,7 +2,7 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import React, { useRef, useState } from "react";
 import LessonLayout from "../components/LessonLayout";
 import { Box, Text, HStack, VStack, useTheme } from "native-base";
-import { ArrowLeft3, ArrowRight3, TickCircle } from "iconsax-react-native";
+import { ArrowLeft3, ArrowRight3 } from "iconsax-react-native";
 import { ResizeMode, Video } from "expo-av";
 import { LinearGradient } from "expo-linear-gradient";
 import { EFont } from "../types/utils";
@@ -43,7 +43,7 @@ const Lessons = (props: Props) => {
   const { colors } = useTheme();
   const video = useRef(null);
   const [status, setStatus] = useState({});
-  const [lessonIdx, setLessonIdx] = useState(1);
+  const [lessonIdx, setLessonIdx] = useState(0);
 
   const navigateExamScreen = () => {
     navigation.navigate("Examination", {
@@ -61,7 +61,7 @@ const Lessons = (props: Props) => {
                 color="#FFFFFF"
                 variant="Bold"
                 onPress={() => setLessonIdx(lessonIdx - 1)}
-                disabled={lessonIdx == 1}
+                disabled={lessonIdx <= 0}
               />
             </TouchableOpacity>
             <Box flex={1} borderRadius={16} alignItems={"center"} px={2}>
@@ -83,7 +83,7 @@ const Lessons = (props: Props) => {
                 color="#FFFFFF"
                 variant="Bold"
                 onPress={() => setLessonIdx(lessonIdx + 1)}
-                disabled={lessonIdx == Object.keys(lessons).length}
+                disabled={lessonIdx >= Object.keys(lessons).length - 1}
               />
             </TouchableOpacity>
           </HStack>
@@ -99,7 +99,7 @@ const Lessons = (props: Props) => {
                 color="white"
                 fontSize={24}
               >
-                Bài {lessonIdx}:
+                Bài {lessonIdx + 1}:
               </Text>
               <HStack alignItems={"center"} space={1}>
                 <Text
@@ -107,7 +107,7 @@ const Lessons = (props: Props) => {
                   color="white"
                   fontSize={18}
                 >
-                  {lessons[lessonIdx].title}
+                  {lessons[lessonIdx + 1].title}
                 </Text>
                 <Tick />
               </HStack>

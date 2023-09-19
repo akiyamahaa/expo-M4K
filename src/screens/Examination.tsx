@@ -19,7 +19,7 @@ const Examination = (props: Props) => {
   const { colors } = useTheme();
   const route = useRoute<any>();
   const { idx } = route.params;
-  const exams = lessons[idx].exams;
+  const exams = lessons[idx + 1].exams;
   const navigation = useNavigation<ScreenNavigationProps>();
   const [quizIndex, setQuizIndex] = useState(0);
   const [finishQuiz, setFinishQuiz] = useState(false);
@@ -48,7 +48,7 @@ const Examination = (props: Props) => {
   };
 
   const handleNextBtn = () => {
-    navigation.navigate("Lessons");
+    navigation.navigate("Collection");
   };
 
   useEffect(() => {}, [answerTagList]);

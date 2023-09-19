@@ -32,7 +32,8 @@ const GroupAnswer = (props: Props) => {
       );
     }
   };
-
+  
+  // Styling
   let spacing;
   if (props.size == "M") {
     spacing = 8;
