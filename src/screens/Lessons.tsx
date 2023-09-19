@@ -58,7 +58,7 @@ const Lessons = (props: Props) => {
             <TouchableOpacity>
               <ArrowLeft3
                 size="36"
-                color="#FFFFFF"
+                color={lessonIdx <= 0 ? "#cecece" : "#fff"}
                 variant="Bold"
                 onPress={() => setLessonIdx(lessonIdx - 1)}
                 disabled={lessonIdx <= 0}
@@ -69,7 +69,7 @@ const Lessons = (props: Props) => {
                 ref={video}
                 style={{ width: "100%", height: 180, borderRadius: 16 }}
                 source={{
-                  uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+                  uri: "https://firebasestorage.googleapis.com/v0/b/sporty-app-e5be8.appspot.com/o/Left%2C%20Right%2C%20Up%2C%20Down.%20Lesson%209.%20Educational%20video%20for%20children%20(Early%20childhood%20development)..mp4?alt=media&token=f985e47f-ab12-4db5-bda0-5380d5333736",
                 }}
                 useNativeControls
                 resizeMode={ResizeMode.CONTAIN}
@@ -80,7 +80,11 @@ const Lessons = (props: Props) => {
             <TouchableOpacity>
               <ArrowRight3
                 size="36"
-                color="#FFFFFF"
+                color={
+                  lessonIdx >= Object.keys(lessons).length - 1
+                    ? "#cecece"
+                    : "#fff"
+                }
                 variant="Bold"
                 onPress={() => setLessonIdx(lessonIdx + 1)}
                 disabled={lessonIdx >= Object.keys(lessons).length - 1}
@@ -102,14 +106,16 @@ const Lessons = (props: Props) => {
                 Bài {lessonIdx + 1}:
               </Text>
               <HStack alignItems={"center"} space={1}>
-                <Text
-                  fontFamily={EFont.Quicksand_700Bold}
-                  color="white"
-                  fontSize={18}
-                >
-                  {lessons[lessonIdx + 1].title}
-                </Text>
-                <Tick />
+                <Box width={"80%"}>
+                  <Text
+                    fontFamily={EFont.Quicksand_700Bold}
+                    color="white"
+                    fontSize={18}
+                  >
+                    {lessons[lessonIdx + 1].title}
+                  </Text>
+                </Box>
+                {/* <Tick /> */}
               </HStack>
             </VStack>
             <CustomBtn
@@ -117,6 +123,7 @@ const Lessons = (props: Props) => {
               size="SM"
               text="Bài kiểm tra"
               handleBtn={navigateExamScreen}
+              disabled={lessons[lessonIdx + 1].exams.length <= 0}
             />
           </HStack>
         </VStack>

@@ -9,10 +9,11 @@ type Props = {
   btnColor: IGradientColor;
   text: string;
   handleBtn: () => void;
+  disabled?: boolean;
 };
 
 const CustomBtn = (props: Props) => {
-  const { text, size, btnColor, handleBtn } = props;
+  const { text, size, btnColor, handleBtn, disabled = false } = props;
   let width, height, fontSize;
   if (size == "MD") {
     width = 220;
@@ -28,11 +29,13 @@ const CustomBtn = (props: Props) => {
     fontSize = 16;
   }
   return (
-    <TouchableOpacity onPress={handleBtn}>
+    <TouchableOpacity onPress={handleBtn} disabled={disabled}>
       <Box style={[styles.button, { width, height }]} shadow={2}>
         <LinearGradient
           // Button Linear Gradient
-          colors={[btnColor.color1, btnColor.color2]}
+          colors={
+            disabled ? ["#fff", "#cecece"] : [btnColor.color1, btnColor.color2]
+          }
           style={styles.gradientColor}
         >
           <Text
