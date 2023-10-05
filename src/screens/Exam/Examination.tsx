@@ -1,15 +1,15 @@
 import { StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import LessonLayout from "../components/LessonLayout";
+import LessonLayout from "../../components/LessonLayout";
 import { Box, Center, HStack, Text, VStack, useTheme } from "native-base";
-import Formula from "../components/Formula";
-import GroupAnswer from "../components/GroupAnswer";
-import { EOperation, EQuizStatus, IAnserTag, IQuiz } from "../types/utils";
-import PopupRightAnswer from "../components/PopupRightAnswer";
-import CustomBtn from "../components/CustomBtn";
+import Formula from "../../components/Formula";
+import GroupAnswer from "../../components/GroupAnswer";
+import { EOperation, EQuizStatus, IAnserTag, IQuiz } from "../../types/utils";
+import PopupRightAnswer from "../../components/PopupRightAnswer";
+import CustomBtn from "../../components/CustomBtn";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { RootStackParams, ScreenNavigationProps } from "../navigations/config";
-import { lessons } from "../data/mockup";
+import { RootStackParams, ScreenNavigationProps } from "../../navigations/config";
+import { lessons } from "../../data/mockup";
 
 type Props = {};
 
@@ -53,7 +53,7 @@ const Examination = (props: Props) => {
 
   useEffect(() => {}, [answerTagList]);
   return (
-    <LessonLayout iconSource={require("../../assets/images/bg-2.jpg")}>
+    <LessonLayout iconSource={require("../../../assets/images/bg-2.jpg")}>
       <PopupRightAnswer
         showModal={showModal}
         setShowModal={setShowModal}

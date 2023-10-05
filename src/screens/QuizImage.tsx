@@ -13,7 +13,7 @@ type Props = {};
 
 const listTestImage: IQuizImage[] = [
   {
-    imageSlot: 3,
+    imageSlot: 2,
     choices: [2, 3, 9],
     answer: 2,
   },

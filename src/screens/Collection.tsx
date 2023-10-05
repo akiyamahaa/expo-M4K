@@ -5,11 +5,13 @@ import { Box, Text, HStack, VStack, ScrollView } from "native-base";
 import { EFont, IListBadges } from "../types/utils";
 import BackgroundLayout from "../components/BackgroundLayout";
 import { Image } from "expo-image";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProps } from "../navigations/config";
 import { createBadges, getBadges, getDBConnection } from "../db/db-service";
 import { allBadges } from "../data/mockup";
 import PopupRightAnswer from "../components/PopupRightAnswer";
+import { loadSound } from "../utils/func";
+import { Audio } from "expo-av";
 
 type Props = {};
 
@@ -19,6 +21,7 @@ interface IBadges {
   name: string;
 }
 
+const playSound = new Audio.Sound();
 const Collection = (props: Props) => {
   const db = getDBConnection();
   const navigation = useNavigation<ScreenNavigationProps>();
@@ -48,6 +51,8 @@ const Collection = (props: Props) => {
   }, [showModal]);
 
   const handlePickBadge = (badgeId: number) => {
+    const playSound = new Audio.Sound();
+    loadSound(playSound, require("../../assets/sound/correct.mp3"));
     createBadges(db, badgeId);
     setShowModal(true);
   };
@@ -55,6 +60,15 @@ const Collection = (props: Props) => {
   const handleNextQues = () => {
     navigation.navigate("Home");
   };
+
+  useFocusEffect(() => {
+    loadSound(playSound, require("../../assets/sound/win.mp3"));
+    const unsubscribe = async () => {
+      await playSound.stopAsync();
+    };
+
+    return () => unsubscribe();
+  });
 
   return (
     <LessonLayout

@@ -6,8 +6,12 @@ import { EOperation, EQuizStatus, IAnserTag, IQuiz } from "../types/utils";
 import Formula from "../components/Formula";
 import GroupAnswer from "../components/GroupAnswer";
 import PopupRightAnswer from "../components/PopupRightAnswer";
-import { useNavigation } from "@react-navigation/native";
+import {
+  useFocusEffect,
+  useNavigation,
+} from "@react-navigation/native";
 import { ScreenNavigationProps } from "../navigations/config";
+import { Audio } from "expo-av";
 
 type Props = {};
 
@@ -42,6 +46,7 @@ const listTest: IQuiz[] = [
   },
 ];
 
+const playSound = new Audio.Sound();
 const Quiz = (props: Props) => {
   const navigation = useNavigation<ScreenNavigationProps>();
   const [answerTag, setAnswerTag] = useState<IAnserTag>(null);

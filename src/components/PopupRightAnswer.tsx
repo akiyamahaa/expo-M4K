@@ -18,11 +18,17 @@ type Props = {
   setShowModal: any;
   handleBtn: () => void;
   text?: string;
+  title?: string;
 };
 
 const PopupRightAnswer = (props: Props) => {
   const { colors } = useTheme();
-  const { showModal, text = "Bạn đã trả lời đúng", handleBtn } = props;
+  const {
+    showModal,
+    title = "Yeah!",
+    text = "Bạn đã trả lời đúng",
+    handleBtn,
+  } = props;
   return (
     <Center>
       <Modal isOpen={showModal} onClose={() => {}}>
@@ -37,7 +43,7 @@ const PopupRightAnswer = (props: Props) => {
                   fontFamily={EFont.Quicksand_700Bold}
                   color={"text.primary"}
                 >
-                  Yeah!
+                  {title}
                 </Text>
                 <Text
                   fontSize={16}

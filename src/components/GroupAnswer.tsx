@@ -3,6 +3,8 @@ import React from "react";
 import { HStack, useTheme } from "native-base";
 import BoxAnswer from "./BoxAnswer";
 import { IQuizAnswer } from "../types/utils";
+import { Audio } from "expo-av";
+import { loadSound } from "../utils/func";
 
 type Props = {
   size: "M" | "S";
@@ -10,7 +12,6 @@ type Props = {
   answerTag: any;
   setAnswerTag: any;
 };
-
 const GroupAnswer = (props: Props) => {
   const { colors } = useTheme();
 
@@ -19,8 +20,10 @@ const GroupAnswer = (props: Props) => {
     1: colors.gradient.secondary.red,
     2: colors.gradient.secondary.orange,
   };
-  const handleChoice = (choice: number, index: number) => {
+  const handleChoice = async (choice: number, index: number) => {
+    const playSound = new Audio.Sound();
     if (choice == props.dataAnswer.answer) {
+      loadSound(playSound, require("../../assets/sound/correct.mp3"));
       props.setAnswerTag(
         <BoxAnswer
           size={props.size}
@@ -30,9 +33,11 @@ const GroupAnswer = (props: Props) => {
           handleBtn={() => {}}
         />
       );
+    } else {
+      loadSound(playSound, require("../../assets/sound/wrong.mp3"));
     }
   };
-  
+
   // Styling
   let spacing;
   if (props.size == "M") {

@@ -7,6 +7,8 @@ export type RootStackParams = {
   Examination: {
     idx: number;
   };
+  ObjectiveTest: undefined;
+  PickImage: undefined;
   Quiz: undefined;
   Collection: undefined;
   QuizImage: undefined;

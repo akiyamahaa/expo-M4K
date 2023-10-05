@@ -1,30 +1,46 @@
 import { StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Center, HStack, VStack, useTheme } from "native-base";
 import BackgroundLayout from "../components/BackgroundLayout";
 import CustomBtn from "../components/CustomBtn";
 import PopupParent from "../components/PopupParent";
-import { useNavigation } from "@react-navigation/native";
+import {
+  useFocusEffect,
+  useIsFocused,
+  useNavigation,
+} from "@react-navigation/native";
 import { ScreenNavigationProps } from "../navigations/config";
+import { Audio } from "expo-av";
+import { loadSound } from "../utils/func";
 type Props = {};
 
+const playSound = new Audio.Sound();
 const Home = (props: Props) => {
   const { colors } = useTheme();
   const navigation = useNavigation<ScreenNavigationProps>();
   const [showModal, setShowModal] = useState(false);
 
-  const navigateLessonsScreen = () => {
+  const navigateLessonsScreen = async () => {
     navigation.navigate("Lessons");
   };
-  const navigateCountScreen = () => {
+  const navigateCountScreen = async () => {
     navigation.navigate("QuizImage");
   };
-  const navigateAddScreen = () => {
+  const navigateAddScreen = async () => {
     navigation.navigate("Quiz");
   };
-  const navigateSubtractScreen = () => {
+  const navigateSubtractScreen = async () => {
     navigation.navigate("Quiz");
   };
+
+  useFocusEffect(() => {
+    loadSound(playSound, require("../../assets/sound/music.mp3"));
+    const unsubscribe = async () => {
+      await playSound.stopAsync();
+    };
+
+    return () => unsubscribe();
+  });
 
   return (
     <BackgroundLayout imageSource={require("../../assets/images/bg-1.jpg")}>

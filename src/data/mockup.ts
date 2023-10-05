@@ -3,14 +3,15 @@ import { ELessonType, EOperation, ILessons, IListBadges } from "../types/utils";
 export const lessons: ILessons = {
   1: {
     title: "Trên, dưới, phải, trái, trước, sau, ở giữa",
-    video: "https://firebasestorage.googleapis.com/v0/b/expo-m4k.appspot.com/o/Left%2C%20Right%2C%20Up%2C%20Down.%20Lesson%209.%20Educational%20video%20for%20children%20(Early%20childhood%20development)..mp4?alt=media&token=5ae5c146-94e0-4066-a20f-0769de60ff2b",
+    video:
+      "https://firebasestorage.googleapis.com/v0/b/expo-m4k.appspot.com/o/Left%2C%20Right%2C%20Up%2C%20Down.%20Lesson%209.%20Educational%20video%20for%20children%20(Early%20childhood%20development)..mp4?alt=media&token=5ae5c146-94e0-4066-a20f-0769de60ff2b",
     type: ELessonType.OBJECTIVE_TEST,
-    exams: [
-    ],
+    exams: [],
   },
   2: {
     title: "Phép cộng trừ các số từ 0 đến 10",
-    video: "https://firebasestorage.googleapis.com/v0/b/expo-m4k.appspot.com/o/Addition%20and%20Subtraction%20_%201st%20Grade%20_%20Math_%20Kids%20Academy.mp4?alt=media&token=516b0a96-044b-4c51-8249-ab2611974791",
+    video:
+      "https://firebasestorage.googleapis.com/v0/b/expo-m4k.appspot.com/o/Addition%20and%20Subtraction%20_%201st%20Grade%20_%20Math_%20Kids%20Academy.mp4?alt=media&token=516b0a96-044b-4c51-8249-ab2611974791",
     type: ELessonType.PICK_NUMBER,
     exams: [
       {
@@ -57,7 +58,6 @@ export const lessons: ILessons = {
       },
     ],
   },
-
 };
 
 export const allBadges: IListBadges = {

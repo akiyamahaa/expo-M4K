@@ -7,13 +7,16 @@ import LoadingOverlay from "../components/LoadingOverlay";
 import { RootStackParams } from "./config";
 import Home from "../screens/Home";
 import Lessons from "../screens/Lessons";
-import Examination from "../screens/Examination";
+import Examination from "../screens/Exam/Examination";
 import Quiz from "../screens/Quiz";
 import Collection from "../screens/Collection";
 import QuizImage from "../screens/QuizImage";
 import * as SQLite from "expo-sqlite";
 import { createTables, deleteTable, getDBConnection } from "../db/db-service";
 import { models } from "../db/models";
+import ObjectiveTest from "../screens/Exam/ObjectiveTest";
+import PickImage from "../screens/Exam/PickImage";
+import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from "expo-av";
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
@@ -34,6 +37,18 @@ const Root = () => {
       }
     };
     loadDb();
+    const loadingSound = async () => {
+      await Audio.setAudioModeAsync({
+        allowsRecordingIOS: false,
+        staysActiveInBackground: true,
+        interruptionModeIOS: InterruptionModeIOS.DuckOthers,
+        playsInSilentModeIOS: true,
+        shouldDuckAndroid: true,
+        interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
+        playThroughEarpieceAndroid: false,
+      });
+    };
+    loadingSound();
   }, []);
   return (
     <>
@@ -46,6 +61,8 @@ const Root = () => {
           }}
         >
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="PickImage" component={PickImage} />
+          <Stack.Screen name="ObjectiveTest" component={ObjectiveTest} />
           <Stack.Screen name="QuizImage" component={QuizImage} />
           <Stack.Screen name="Collection" component={Collection} />
           <Stack.Screen name="Lessons" component={Lessons} />

@@ -1,15 +1,16 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import LessonLayout from "../components/LessonLayout";
 import { Box, Text, HStack, VStack, useTheme } from "native-base";
 import { ArrowLeft3, ArrowRight3 } from "iconsax-react-native";
-import { ResizeMode, Video } from "expo-av";
+import { Audio, ResizeMode, Video } from "expo-av";
 import { LinearGradient } from "expo-linear-gradient";
 import { EFont } from "../types/utils";
 import CustomBtn from "../components/CustomBtn";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProps } from "../navigations/config";
 import { lessons } from "../data/mockup";
+import { RootState, useAppSelector } from "../store";
 
 type Props = {};
 
@@ -36,7 +37,6 @@ const Tick = () => {
     </LinearGradient>
   );
 };
-
 const Lessons = (props: Props) => {
   const navigation = useNavigation<ScreenNavigationProps>();
   // const route = useRoute();
@@ -44,12 +44,12 @@ const Lessons = (props: Props) => {
   const video = useRef(null);
   const [status, setStatus] = useState({});
   const [lessonIdx, setLessonIdx] = useState(0);
-
   const navigateExamScreen = () => {
     navigation.navigate("Examination", {
       idx: lessonIdx,
     });
   };
+
   return (
     <LessonLayout iconSource={require("../../assets/images/bg-3.jpg")}>
       <Box flex={1}>
