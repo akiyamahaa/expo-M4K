@@ -17,7 +17,7 @@ const BoxAnswer = (props: Props) => {
   if (size == "M") {
     width = 60;
     height = 60;
-    fontSize = 40;
+    fontSize = 38;
   } else if (size == "S") {
     width = 40;
     height = 40;

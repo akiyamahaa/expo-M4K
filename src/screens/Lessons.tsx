@@ -1,16 +1,15 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
+import { Alert, StyleSheet, TouchableOpacity, Button } from "react-native";
+import React, { useCallback, useRef, useState } from "react";
 import LessonLayout from "../components/LessonLayout";
 import { Box, Text, HStack, VStack, useTheme } from "native-base";
 import { ArrowLeft3, ArrowRight3 } from "iconsax-react-native";
-import { Audio, ResizeMode, Video } from "expo-av";
 import { LinearGradient } from "expo-linear-gradient";
-import { EFont } from "../types/utils";
+import { EFont, ELessonType } from "../types/utils";
 import CustomBtn from "../components/CustomBtn";
-import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProps } from "../navigations/config";
 import { lessons } from "../data/mockup";
-import { RootState, useAppSelector } from "../store";
+import YoutubePlayer from "react-native-youtube-iframe";
 
 type Props = {};
 
@@ -44,10 +43,27 @@ const Lessons = (props: Props) => {
   const video = useRef(null);
   const [status, setStatus] = useState({});
   const [lessonIdx, setLessonIdx] = useState(0);
+
+  const [playing, setPlaying] = useState(false);
+
+  const onStateChange = useCallback((state: string) => {
+    if (state === "ended") {
+      setPlaying(false);
+      Alert.alert("Video has finished playing!");
+    }
+  }, []);
+
   const navigateExamScreen = () => {
-    navigation.navigate("Examination", {
-      idx: lessonIdx,
-    });
+    const lessonType = lessons[lessonIdx].type;
+    if (lessonType == ELessonType.OBJECTIVE_TEST) {
+      navigation.navigate("ObjectiveTest", {
+        idx: lessonIdx,
+      });
+    } else if (lessonType == ELessonType.PICK_NUMBER) {
+      navigation.navigate("Examination", {
+        idx: lessonIdx,
+      });
+    }
   };
 
   return (
@@ -64,17 +80,13 @@ const Lessons = (props: Props) => {
                 disabled={lessonIdx <= 0}
               />
             </TouchableOpacity>
-            <Box flex={1} borderRadius={16} alignItems={"center"} px={2}>
-              <Video
-                ref={video}
-                style={{ width: "100%", height: 180, borderRadius: 16 }}
-                source={{
-                  uri: lessons[lessonIdx + 1].video,
-                }}
-                useNativeControls
-                resizeMode={ResizeMode.CONTAIN}
-                isLooping
-                onPlaybackStatusUpdate={(status) => setStatus(() => status)}
+            <Box flex={1} borderRadius={12} alignItems={"center"} px={2}>
+              <YoutubePlayer
+                height={220}
+                width={380}
+                play={playing}
+                videoId={lessons[lessonIdx].video}
+                onChangeState={onStateChange}
               />
             </Box>
             <TouchableOpacity>
@@ -93,7 +105,7 @@ const Lessons = (props: Props) => {
           </HStack>
           <HStack
             width="60%"
-            mt={2}
+            mt={1}
             justifyContent={"space-between"}
             alignItems={"center"}
           >
@@ -101,7 +113,7 @@ const Lessons = (props: Props) => {
               <Text
                 fontFamily={EFont.Quicksand_700Bold}
                 color="white"
-                fontSize={24}
+                fontSize={20}
               >
                 Bài {lessonIdx + 1}:
               </Text>
@@ -110,9 +122,9 @@ const Lessons = (props: Props) => {
                   <Text
                     fontFamily={EFont.Quicksand_700Bold}
                     color="white"
-                    fontSize={18}
+                    fontSize={16}
                   >
-                    {lessons[lessonIdx + 1].title}
+                    {lessons[lessonIdx].title}
                   </Text>
                 </Box>
                 {/* <Tick /> */}
@@ -123,7 +135,7 @@ const Lessons = (props: Props) => {
               size="SM"
               text="Bài kiểm tra"
               handleBtn={navigateExamScreen}
-              disabled={lessons[lessonIdx + 1].exams.length <= 0}
+              disabled={lessons[lessonIdx].exams.length <= 0}
             />
           </HStack>
         </VStack>

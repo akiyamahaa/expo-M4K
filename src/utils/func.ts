@@ -5,3 +5,7 @@ export const loadSound = async (sound: any, soundUrl: string) => {
   }
   await sound.playAsync();
 };
+
+export const randomNumberToN = (n: number) => {
+  return Math.floor(Math.random() * n);
+};

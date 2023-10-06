@@ -15,7 +15,7 @@ const Formula = (props: Props) => {
   const { size, status = EQuizStatus.ANSWER, data, answerTag } = props;
   let fontSize: number, spacing;
   if (size == "M") {
-    fontSize = 48;
+    fontSize = 40;
     spacing = 8;
   } else if (size == "S") {
     fontSize = 30;
@@ -32,7 +32,7 @@ const Formula = (props: Props) => {
     <HStack space={spacing} alignItems={"center"}>
       {/* Formula */}
       {Object.keys(formula).map((option) => (
-        <Box style={{ width: 36 }} alignItems={"center"} key={option}>
+        <Box style={{ width: 42 }} alignItems={"center"} key={option}>
           <Text
             color={status == EQuizStatus.HIDDEN ? "#76c0f5" : "#fff"}
             fontSize={fontSize}

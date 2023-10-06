@@ -22,7 +22,7 @@ const GroupAnswer = (props: Props) => {
   };
   const handleChoice = async (choice: number, index: number) => {
     const playSound = new Audio.Sound();
-    if (choice == props.dataAnswer.answer) {
+    if (index == props.dataAnswer.answer) {
       loadSound(playSound, require("../../assets/sound/correct.mp3"));
       props.setAnswerTag(
         <BoxAnswer

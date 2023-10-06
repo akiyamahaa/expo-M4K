@@ -12,9 +12,9 @@ import {
 import { ScreenNavigationProps } from "../navigations/config";
 import { Audio } from "expo-av";
 import { loadSound } from "../utils/func";
+import { EOperation } from "../types/utils";
 type Props = {};
 
-const playSound = new Audio.Sound();
 const Home = (props: Props) => {
   const { colors } = useTheme();
   const navigation = useNavigation<ScreenNavigationProps>();
@@ -27,13 +27,18 @@ const Home = (props: Props) => {
     navigation.navigate("QuizImage");
   };
   const navigateAddScreen = async () => {
-    navigation.navigate("Quiz");
+    navigation.navigate("Quiz", {
+      operation: EOperation.AddOperation,
+    });
   };
   const navigateSubtractScreen = async () => {
-    navigation.navigate("Quiz");
+    navigation.navigate("Quiz", {
+      operation: EOperation.SubtractOperation,
+    });
   };
 
   useFocusEffect(() => {
+    const playSound = new Audio.Sound();
     loadSound(playSound, require("../../assets/sound/music.mp3"));
     const unsubscribe = async () => {
       await playSound.stopAsync();

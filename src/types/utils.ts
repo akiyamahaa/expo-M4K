@@ -46,7 +46,7 @@ export interface ILessons {
     title: string;
     video: string;
     type: ELessonType;
-    exams: IQuiz[];
+    exams: any[];
   };
 }
 
@@ -57,10 +57,10 @@ export interface IListBadges {
 }
 
 export enum ELessonType {
-  OBJECTIVE_TEST, // 1 cau hoi 4 cau tra loi
+  OBJECTIVE_TEST, // 1 question, 1 image, 4 cau tra loi
+  PICK_NUMBER, // hiển thị phép tính và chọn 1 trong 3 đáp án.
   MATCH_IMAGE, // hien thi cac anh va match dap an giong bài kiểm tra
   PICK_IMAGE,
-  PICK_NUMBER,
   PICK_OPERATION,
   FILL_NUMBER, // tự điền giá trị
   SLIDE_NUMBER, // su dung slide de tim gia tri dung
