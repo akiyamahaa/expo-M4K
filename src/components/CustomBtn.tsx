@@ -22,7 +22,7 @@ const CustomBtn = (props: Props) => {
   } else if (size == "XS") {
     width = 160;
     height = 32;
-    fontSize = 12;
+    fontSize = 14;
   } else if (size == "SM") {
     width = 110;
     height = 40;

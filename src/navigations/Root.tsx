@@ -17,7 +17,10 @@ import { models } from "../db/models";
 import ObjectiveTest from "../screens/Exam/ObjectiveTest";
 import PickImage from "../screens/Exam/PickImage";
 import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from "expo-av";
+import { LogBox } from 'react-native';
 
+//Ignore all log notifications
+LogBox.ignoreAllLogs();
 const Stack = createNativeStackNavigator<RootStackParams>();
 
 const Root = () => {

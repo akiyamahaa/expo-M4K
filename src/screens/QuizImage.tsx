@@ -15,7 +15,7 @@ const listTestImage: IQuizImage[] = [
   {
     imageSlot: 2,
     choices: [2, 3, 9],
-    answer: 2,
+    answer: 0,
   },
 ];
 

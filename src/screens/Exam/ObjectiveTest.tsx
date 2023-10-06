@@ -73,10 +73,13 @@ const ObjectiveTest = (props: Props) => {
               <Image
                 source={exams[randomNum].imageSource}
                 style={{
-                  width: "100%",
-                  height: 150,
+                  width: 300,
+                  height: 180,
                   borderRadius: 8,
                   marginBottom: 2,
+                  borderWidth: 2,
+                  borderColor: "#cecece",
+                  backgroundColor: "#fff",
                 }}
                 contentFit="contain"
               />
@@ -105,7 +108,6 @@ const ObjectiveTest = (props: Props) => {
               />
             </Box>
           ))}
-          {/* <CustomBtn text="Con Hổ" /> */}
         </HStack>
       </Center>
     </LessonLayout>

@@ -8,7 +8,10 @@ import { EOperation, EQuizStatus, IAnserTag, IQuiz } from "../../types/utils";
 import PopupRightAnswer from "../../components/PopupRightAnswer";
 import CustomBtn from "../../components/CustomBtn";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { RootStackParams, ScreenNavigationProps } from "../../navigations/config";
+import {
+  RootStackParams,
+  ScreenNavigationProps,
+} from "../../navigations/config";
 import { lessons } from "../../data/mockup";
 
 type Props = {};
