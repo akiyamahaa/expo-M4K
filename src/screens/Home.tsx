@@ -1,14 +1,10 @@
 import { StyleSheet } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, Center, HStack, VStack, useTheme } from "native-base";
 import BackgroundLayout from "../components/BackgroundLayout";
 import CustomBtn from "../components/CustomBtn";
 import PopupParent from "../components/PopupParent";
-import {
-  useFocusEffect,
-  useIsFocused,
-  useNavigation,
-} from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProps } from "../navigations/config";
 import { Audio } from "expo-av";
 import { loadSound } from "../utils/func";

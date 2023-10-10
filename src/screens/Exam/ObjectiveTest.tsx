@@ -99,11 +99,11 @@ const ObjectiveTest = (props: Props) => {
         {/* Answer Group */}
         <HStack flexWrap={"wrap"} justifyContent={"center"} px={16}>
           {exams[randomNum].choices.map((choice: string, idx: number) => (
-            <Box margin={2} key={choice}>
+            <Box margin={2} key={choice} width={"40%"}>
               <CustomBtn
                 btnColor={colors.gradient.primary}
                 text={choice}
-                size="XS"
+                // size="XS"
                 handleBtn={() => handleBtn(idx)}
               />
             </Box>

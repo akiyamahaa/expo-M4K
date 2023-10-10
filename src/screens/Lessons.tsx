@@ -82,8 +82,8 @@ const Lessons = (props: Props) => {
             </TouchableOpacity>
             <Box flex={1} borderRadius={12} alignItems={"center"} px={2}>
               <YoutubePlayer
-                height={220}
-                width={380}
+                height={180}
+                width={280}
                 play={playing}
                 videoId={lessons[lessonIdx].video}
                 onChangeState={onStateChange}
@@ -123,6 +123,8 @@ const Lessons = (props: Props) => {
                     fontFamily={EFont.Quicksand_700Bold}
                     color="white"
                     fontSize={16}
+                    ellipsizeMode="tail"
+                    numberOfLines={2}
                   >
                     {lessons[lessonIdx].title}
                   </Text>

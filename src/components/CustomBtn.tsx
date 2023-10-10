@@ -1,19 +1,19 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import { Box, Text } from "native-base";
+import { Box, IBoxProps, Text } from "native-base";
 import { EFont, IGradientColor } from "../types/utils";
 import { LinearGradient } from "expo-linear-gradient";
 
 type Props = {
-  size: "MD" | "XS" | "SM";
+  size?: "MD" | "XS" | "SM";
   btnColor: IGradientColor;
   text: string;
   handleBtn: () => void;
   disabled?: boolean;
-};
+} & IBoxProps;
 
 const CustomBtn = (props: Props) => {
-  const { text, size, btnColor, handleBtn, disabled = false } = props;
+  const { text, size, btnColor, handleBtn, disabled = false,...boxProps } = props;
   let width, height, fontSize;
   if (size == "MD") {
     width = 220;
@@ -28,9 +28,12 @@ const CustomBtn = (props: Props) => {
     height = 40;
     fontSize = 16;
   }
+  else{
+    height = 32;
+  }
   return (
     <TouchableOpacity onPress={handleBtn} disabled={disabled}>
-      <Box style={[styles.button, { width, height }]} shadow={2}>
+      <Box shadow={2} {...boxProps} style={[styles.button, { width, height }]} >
         <LinearGradient
           // Button Linear Gradient
           colors={
