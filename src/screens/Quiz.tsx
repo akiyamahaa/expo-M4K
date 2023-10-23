@@ -15,7 +15,9 @@ type Props = {} & NativeStackScreenProps<RootStackParams, "Quiz">;
 const Quiz = (props: Props) => {
   const { route, navigation } = props;
   const { operation } = route.params;
-  const [listTest] = useState(quizAddAndSubtract[operation]);
+  const [listTest] = useState(
+    quizAddAndSubtract[operation].sort(() => 0.5 - Math.random()).slice(0, 5)
+  );
   const [answerTag, setAnswerTag] = useState<IAnserTag>(null);
   const [quesIndex, setQuesIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
