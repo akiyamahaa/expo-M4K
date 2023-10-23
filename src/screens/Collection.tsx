@@ -72,7 +72,7 @@ const Collection = (props: Props) => {
 
   return (
     <LessonLayout
-      iconSource={require("../../assets/images/bg-3.jpg")}
+      iconSource={require("../../assets/images/bg-21.png")}
       handleBack={() => navigation.navigate("Home")}
     >
       <PopupRightAnswer
@@ -84,7 +84,7 @@ const Collection = (props: Props) => {
       <Box flex={1}>
         <Box height={20} width={"60%"} mt={"-6"} alignSelf={"center"}>
           <BackgroundLayout
-            imageSource={require("../../assets/images/label.png")}
+            imageSource={require("../../assets/images/label1.png")}
           >
             <Box flex={1} justifyContent={"center"} alignItems={"center"}>
               <Text

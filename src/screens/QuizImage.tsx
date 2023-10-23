@@ -45,7 +45,7 @@ const QuizImage = (props: Props) => {
   }, [answerTag]);
 
   return (
-    <LessonLayout iconSource={require("../../assets/images/bg-2.jpg")}>
+    <LessonLayout iconSource={require("../../assets/images/bg-21.png")}>
       <PopupRightAnswer
         showModal={showModal}
         setShowModal={setShowModal}

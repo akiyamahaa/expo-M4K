@@ -67,7 +67,7 @@ const Lessons = (props: Props) => {
   };
 
   return (
-    <LessonLayout iconSource={require("../../assets/images/bg-3.jpg")}>
+    <LessonLayout iconSource={require("../../assets/images/bg-21.png")}>
       <Box flex={1}>
         <VStack flex={1} justifyContent={"center"} alignItems={"center"}>
           <HStack alignItems={"center"} justifyContent={"space-between"} px={5}>

@@ -44,7 +44,7 @@ const Home = (props: Props) => {
   });
 
   return (
-    <BackgroundLayout imageSource={require("../../assets/images/bg-1.jpg")}>
+    <BackgroundLayout imageSource={require("../../assets/images/bg-11.png")}>
       {/* Popup */}
       <PopupParent showModal={showModal} setShowModal={setShowModal} />
       <Box flex={1} justifyContent={"center"}>
@@ -81,7 +81,12 @@ const Home = (props: Props) => {
           </VStack>
         </Center>
       </Box>
-      <Box position={"absolute"} bottom={4} right={"10%"}>
+      <Box
+        position={"absolute"}
+        bottom={8}
+        width={"100%"}
+        alignItems={"center"}
+      >
         <CustomBtn
           btnColor={colors.gradient.secondary.orange}
           text="Dành cho phụ huynh"

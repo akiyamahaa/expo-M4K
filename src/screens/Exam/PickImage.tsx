@@ -7,7 +7,7 @@ type Props = {};
 
 const PickImage = (props: Props) => {
   return (
-    <LessonLayout iconSource={require("../../../assets/images/bg-2.jpg")}>
+    <LessonLayout iconSource={require("../../../assets/images/bg-21.png")}>
       <Text>PickImage</Text>
     </LessonLayout>
   );

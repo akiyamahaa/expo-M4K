@@ -24,8 +24,8 @@ export const newColorTheme = {
       },
     },
     primary: {
-      color1: "#45DEFF",
-      color2: "#2671E1",
+      color1: "#FFB3BD",
+      color2: "#BF243A",
     },
   },
   text: {

@@ -16,13 +16,13 @@ const LessonLayout = (props: Props) => {
   const { handleBack = () => navigation.goBack() } = props;
   return (
     <BackgroundLayout
-      imageSource={props.iconSource || require("../../assets/images/bg-2.png")}
+      imageSource={props.iconSource || require("../../assets/images/bg-21.png")}
     >
       <Box flex={1} py={8}>
         <HStack flex={1} justifyContent={"flex-end"}>
           <Box height="100%" width="55%">
             <BackgroundLayout
-              imageSource={require("../../assets/images/table.png")}
+              imageSource={require("../../assets/images/table1.png")}
             >
               {props.children}
             </BackgroundLayout>
