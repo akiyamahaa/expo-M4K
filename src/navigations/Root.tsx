@@ -11,35 +11,17 @@ import Examination from "../screens/Exam/Examination";
 import Quiz from "../screens/Quiz";
 import Collection from "../screens/Collection";
 import QuizImage from "../screens/QuizImage";
-import * as SQLite from "expo-sqlite";
-import { createTables, deleteTable, getDBConnection } from "../db/db-service";
-import { models } from "../db/models";
 import ObjectiveTest from "../screens/Exam/ObjectiveTest";
 import PickImage from "../screens/Exam/PickImage";
 import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from "expo-av";
-import { LogBox } from 'react-native';
+import { LogBox } from "react-native";
 
 //Ignore all log notifications
 LogBox.ignoreAllLogs();
 const Stack = createNativeStackNavigator<RootStackParams>();
 
 const Root = () => {
-  const [db, setDb] = useState<SQLite.Database>();
-
   useEffect(() => {
-    const loadDb = () => {
-      try {
-        const db = getDBConnection();
-        // deleteTable(db, "badges");
-        // create Tables
-        Object.keys(models).map((tableName) =>
-          createTables(db, tableName, models[tableName])
-        );
-      } catch (error: any) {
-        throw new Error(error);
-      }
-    };
-    loadDb();
     const loadingSound = async () => {
       await Audio.setAudioModeAsync({
         allowsRecordingIOS: false,

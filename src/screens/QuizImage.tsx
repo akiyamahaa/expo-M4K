@@ -20,7 +20,6 @@ const listTestImage: IQuizImage[] = [
 ];
 
 const QuizImage = (props: Props) => {
-  const { colors } = useTheme();
   const navigation = useNavigation<ScreenNavigationProps>();
   const [answerTag, setAnswerTag] = useState<ChildNode | null>(null);
   const [quesIndex, setQuesIndex] = useState(0);

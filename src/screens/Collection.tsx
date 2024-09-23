@@ -7,11 +7,11 @@ import BackgroundLayout from "../components/BackgroundLayout";
 import { Image } from "expo-image";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProps } from "../navigations/config";
-import { createBadges, getBadges, getDBConnection } from "../db/db-service";
 import { allBadges } from "../data/mockup";
 import PopupRightAnswer from "../components/PopupRightAnswer";
 import { loadSound } from "../utils/func";
 import { Audio } from "expo-av";
+import AsyncStorage from "@react-native-async-storage/async-storage"; // Add this import
 
 type Props = {};
 
@@ -23,7 +23,6 @@ interface IBadges {
 
 const playSound = new Audio.Sound();
 const Collection = (props: Props) => {
-  const db = getDBConnection();
   const navigation = useNavigation<ScreenNavigationProps>();
 
   const [myBadges, setMyBadges] = useState<IBadges[]>([]);
@@ -33,7 +32,9 @@ const Collection = (props: Props) => {
   useEffect(() => {
     const loadBadges = async () => {
       try {
-        const list: IBadges[] = (await getBadges(db)) as IBadges[];
+        const storedBadges = await AsyncStorage.getItem("myBadges"); // Fetch badges from Async Storage
+        const list: IBadges[] = storedBadges ? JSON.parse(storedBadges) : []; // Parse the stored badges
+        console.log("🚀 ~ loadBadges ~ list:", list);
         let newListBadges = { ...allBadges };
         // remove collected badges
         list.forEach((badge) => {
@@ -50,10 +51,14 @@ const Collection = (props: Props) => {
     loadBadges();
   }, [showModal]);
 
-  const handlePickBadge = (badgeId: number) => {
+  const handlePickBadge = async (badgeId: number) => {
+    // Make this function async
     const playSound = new Audio.Sound();
     loadSound(playSound, require("../../assets/sound/correct.mp3"));
-    createBadges(db, badgeId);
+    const currentBadges = await AsyncStorage.getItem("myBadges"); // Get current badges
+    const updatedBadges = currentBadges ? JSON.parse(currentBadges) : []; // Parse current badges
+    updatedBadges.push({ badgeId }); // Add new badge
+    await AsyncStorage.setItem("myBadges", JSON.stringify(updatedBadges)); // Save updated badges
     setShowModal(true);
   };
 
