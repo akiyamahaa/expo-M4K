@@ -32,7 +32,7 @@ const Formula = (props: Props) => {
     <HStack space={spacing} alignItems={"center"}>
       {/* Formula */}
       {Object.keys(formula).map((option) => (
-        <Box style={{ width: 42 }} alignItems={"center"} key={option}>
+        <Box style={{ width: 44 }} alignItems={"center"} key={option}>
           <Text
             color={status == EQuizStatus.HIDDEN ? "#76c0f5" : "#fff"}
             fontSize={fontSize}
