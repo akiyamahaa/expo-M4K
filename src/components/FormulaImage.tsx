@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, HStack, Text } from 'native-base'
 import BoxQuestion from './BoxQuestion'
-import { Image } from 'expo-image'
+import { Image } from 'react-native'
 
 type Props = {
   imageSlot: number

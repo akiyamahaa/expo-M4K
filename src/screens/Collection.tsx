@@ -1,15 +1,13 @@
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { Image, ScrollView, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { IListBadges } from '../types/utils'
-import BackgroundLayout from '../components/BackgroundLayout'
-import { Image } from 'expo-image'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { allBadges } from '../data/mockup'
 import PopupRightAnswer from '../components/PopupRightAnswer'
-import { Audio } from 'expo-av'
+// import { Audio } from 'expo-av'
 import AsyncStorage from '@react-native-async-storage/async-storage' // Add this import
 import { ScreenNavigationProps } from '@/navigation/config'
-import { loadSound } from '@/utils/func'
+// import { loadSound } from '@/utils/func'
 import { images } from '@/constants'
 import LessonLayout from '@/components/LessonLayout'
 

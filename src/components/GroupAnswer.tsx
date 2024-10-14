@@ -3,8 +3,8 @@ import React from 'react'
 import { useTheme } from 'native-base'
 import BoxAnswer from './BoxAnswer'
 import { IQuizAnswer } from '../types/utils'
-import { Audio } from 'expo-av'
-import { loadSound } from '../utils/func'
+// import { Audio } from 'expo-av'
+// import { loadSound } from '../utils/func'
 
 type Props = {
   size: 'M' | 'S'

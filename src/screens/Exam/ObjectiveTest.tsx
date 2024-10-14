@@ -1,14 +1,13 @@
-import { View } from 'react-native'
+import { Image, View } from 'react-native'
 import React, { useState } from 'react'
 import LessonLayout from '../../components/LessonLayout'
 import { Box, Center, HStack, Text, VStack, useTheme } from 'native-base'
-import { Image } from 'expo-image'
 import CustomBtn from '../../components/CustomBtn'
 import PopupRightAnswer from '../../components/PopupRightAnswer'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { lessons } from '../../data/mockup'
-import { loadSound, randomNumberToN } from '../../utils/func'
-import { Audio } from 'expo-av'
+import { randomNumberToN } from '../../utils/func'
+// import { Audio } from 'expo-av'
 import { RootStackParams } from '@/navigation/config'
 import { images } from '@/constants'
 
@@ -81,7 +80,6 @@ const ObjectiveTest = (props: Props) => {
                   borderColor: '#cecece',
                   backgroundColor: '#fff',
                 }}
-                contentFit="contain"
               />
             </Center>
             <Box>
