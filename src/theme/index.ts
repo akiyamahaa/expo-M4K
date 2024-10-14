@@ -1,0 +1,48 @@
+import { extendTheme } from 'native-base'
+
+/**
+ * Trong cac component co the dung useTheme
+ */
+
+export const newColorTheme = {
+  primary: {
+    blue: '#3987B9',
+  },
+  gradient: {
+    secondary: {
+      green: {
+        color1: '#BFC021',
+        color2: '#7A7D00',
+      },
+      red: {
+        color1: '#FF8579',
+        color2: '#FF3F54',
+      },
+      orange: {
+        color1: '#FFD21C',
+        color2: '#FF9F1F',
+      },
+    },
+    primary: {
+      color1: '#45DEFF',
+      color2: '#2671E1',
+    },
+  },
+  text: {
+    50: '#FAFAFA',
+    0: '#FFF',
+    coolGray: '#1F2937',
+    primary: '#4CACE9',
+    black: '#000',
+  },
+}
+
+const appTheme = extendTheme({
+  colors: newColorTheme,
+})
+
+export type AppThemeType = typeof appTheme
+declare module 'native-base' {
+  interface ICustomTheme extends AppThemeType {}
+}
+export default appTheme
